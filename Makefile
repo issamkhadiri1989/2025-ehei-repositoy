@@ -17,7 +17,7 @@ up:
 remove-sources:
 	rm -Rf code && mkdir code
 
-install: down up download-empty-project install-env
+install: remove-sources down up download-empty-project install-env
 
 start:
 	docker compose up -d --no-recreate --remove-orphans
