@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f0cd674-3c2e-468f-9b46-20f3ac4b917c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitkeep" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/MenuController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/menu/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/partials/_user_menu.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
