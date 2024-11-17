@@ -18,19 +18,19 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route(path: "/about-the-company", name: "about_the_company")]
+    #[Route(path: '/about-the-company', name: 'about_the_company')]
     public function aboutUs(): Response
     {
         return $this->render('default/about_us.html.twig');
     }
 
-    #[Route(name: "app_contact_us", path: "/contact-us")]
+    #[Route(name: 'app_contact_us', path: '/contact-us')]
     public function contactUs(): Response
     {
         return $this->render('default/contact_us.html.twig');
     }
 
-    #[Route(path: "/terms-and-conditions", name: "app_terms_and_conditions")]
+    #[Route(path: '/terms-and-conditions', name: 'app_terms_and_conditions')]
     public function policies(): Response
     {
         return $this->render('default/policies.html.twig');

@@ -1,0 +1,9 @@
+<h5>Réseaux Sociaux</h5>
+<ul class="nav flex-column">
+    {% for name,value in social_media %}
+        <li class="nav-item mb-2">
+            {{ value.icon | raw }}
+            <a href="{{ value.url }}" class=" nav-link p-0 text-body-secondary">{{ name }}</a>
+        </li>
+    {% endfor %}
+</ul>

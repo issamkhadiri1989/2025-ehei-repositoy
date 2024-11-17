@@ -1,0 +1,17 @@
+<ul class="navbar-nav me-auto">
+    <li class="nav-item">
+        <a class="nav-link active" href="#">Home
+            <span class="visually-hidden">(current)</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('about_the_company') }}">A propos de nous</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('app_terms_and_conditions') }}">Conditions d'utilisation</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('app_contact_us') }}">Contactez-Nous</a>
+    </li>
+    {{ render(controller("App\\Controller\\MenuController::userMenu")) }}
+</ul>
