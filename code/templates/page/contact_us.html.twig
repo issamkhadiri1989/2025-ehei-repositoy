@@ -1,4 +1,22 @@
-{% extends 'base.html.twig' %}
-{% block body %}
-
-{% endblock body %}
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="container">
+        <form method="post">
+            <fieldset>
+                <legend>Contactez-nous</legend>
+                <div>
+                    <label for="email_address" class="form-label mt-4">Adresse email</label>
+                    <input type="email" class="form-control" id="email_address" placeholder="Votre adresse email" name="email_address">
+                </div>
+                <div>
+                    <label for="full_name" class="form-label mt-4">Nom complet</label>
+                    <input type="text" class="form-control" id="full_name" placeholder="Votre nom" name="full_name">
+                </div>
+                <div>
+                    <label for="message" class="form-label mt-4">Message</label>
+                    <textarea class="form-control" id="message" rows="3" placeholder="Votre message..." name="message"></textarea>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock content %}

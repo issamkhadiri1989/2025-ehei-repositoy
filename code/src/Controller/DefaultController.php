@@ -5,14 +5,24 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/default', name: 'app_default')]
-    public function index(): Response
+    #[Route('/default', name: 'app_default', stateless: true)]
+    public function index(Request $request): Response
     {
+        $session = $request->getSession();
+
+        $username = 'anonymous';
+        if ($session->has('username')) {
+            $username = $session->get('username');
+        } else {
+            $session->set('username', 'Issam');
+        }
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
