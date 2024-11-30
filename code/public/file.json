@@ -1,0 +1,12 @@
+{
+    "nom": "Issam",
+    "email": "khadiri.issam@gmail.com",
+    "fonction": {
+        "titre": "Expert Technique",
+        "Societe": "SQLI"
+    },
+    "technologies": [
+        "PHP",
+        "Symfony"
+    ]
+}

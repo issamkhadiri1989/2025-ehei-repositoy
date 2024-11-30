@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/default', name: 'app_default', stateless: true)]
+    #[Route('/default', name: 'app_default', /*stateless: true*/)]
     public function index(Request $request): Response
     {
         $session = $request->getSession();
@@ -31,7 +33,18 @@ class DefaultController extends AbstractController
     #[Route(path: '/about-the-company', name: 'about_the_company')]
     public function aboutUs(): Response
     {
-        return $this->render('default/about_us.html.twig');
+        // enable this to redirect to my Github repository
+//        return new RedirectResponse("https://github.com/issamkhadiri1989");
+
+        // this is equivalent to the above code
+//        return $this->redirect("https://github.com/issamkhadiri1989");
+
+        return new RedirectResponse(
+            status: Response::HTTP_MOVED_PERMANENTLY,
+            url: "https://github.com/issamkhadiri1989",
+        );
+
+//        return $this->render('default/about_us.html.twig');
     }
 
     #[Route(name: 'app_contact_us', path: '/contact-us')]
@@ -44,5 +57,17 @@ class DefaultController extends AbstractController
     public function policies(): Response
     {
         return $this->render('default/policies.html.twig');
+    }
+
+    #[Route(path: '/api/me', name: 'app_expose_my_profile')]
+    public function exposeApi(): JsonResponse
+    {
+        // get the content of the json file
+        $content = \file_get_contents('file.json');
+
+        return new JsonResponse(data: $content, json: true, /*status: Response::HTTP_OK*/);
+
+        // here we need to pass an array to make if work.
+//        return $this->json(data: \json_decode($content), );
     }
 }
