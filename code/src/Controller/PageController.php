@@ -27,13 +27,39 @@ class PageController extends AbstractController
     #[Route('/contact-us', name: 'app_contact_us')]
     public function contactUs(Request $request): Response
     {
+        // data: this option is used to set initial data for the form being built
         $builder = $this->createFormBuilder()
-            ->add('email_address', EmailType::class)
+            ->add(
+                'email_address',
+                EmailType::class,
+                /*[
+                    'attr' => [
+                        'class' => 'custom-class',
+                        'placeholder' => 'Your@email.com',
+                    ],
+                ],*/
+            )
             ->add('full_name', TextType::class)
             ->add('message', TextareaType::class)
-            ->add('send', SubmitType::class);
+//            ->add('send', SubmitType::class)
+        ;
 
         $form = $builder->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            // add a flashing message, a "notification", for the user.
+            $this->addFlash(
+                'success',
+                "Nous vous remercions d'avoir pris le temps de nous contacter. Nous allons vous répondre dans les plus brefs délais.",
+            );
+
+            // redirect to an internal route (home page)
+            return $this->redirectToRoute('app_default');
+        }
 
         return $this->render('page/contact_us.html.twig', ['contact_form' => $form]);
     }

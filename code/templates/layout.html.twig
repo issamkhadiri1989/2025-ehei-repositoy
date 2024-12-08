@@ -16,6 +16,8 @@
             </div>
         </div>
     </nav>
+    {# include the notifications related partial template #}
+    {{ include('partials/_notifications.html.twig') }}
     {% block content %}{% endblock content %}
     <div class="container">
         <footer class="py-5 my-5 border-top">
