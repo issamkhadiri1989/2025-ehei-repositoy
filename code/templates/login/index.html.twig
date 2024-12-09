@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Hello LoginController!{% endblock %}
+{% block content %}
+    <div class="container">
+        {{ form_start(login_form) }}
+            {{ form_row(login_form) }}
+            <button class="btn btn-primary">Se connecter</button>
+        {{ form_end(login_form) }}
+    </div>
+{% endblock content %}
