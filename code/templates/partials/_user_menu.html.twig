@@ -6,10 +6,16 @@
        aria-haspopup="true"
        aria-expanded="false">Dropdown</a>
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="{{ url('app_expose_my_profile') }}">{{ user_name }}</a>
+        {% if app.session.get('current_user') %}
+            <a class="dropdown-item" href="{{ url('app_expose_my_profile') }}">
+                {{ app.session.get('current_user')}}
+            </a>
+        {% endif %}
         <a class="dropdown-item" href="#">Another action</a>
         <a class="dropdown-item" href="#">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
+        {% if not app.session.get('current_user') %}
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ url('app_login') }}">Se connecter</a>
+        {% endif %}
     </div>
 </li>
