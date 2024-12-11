@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7f0cd674-3c2e-468f-9b46-20f3ac4b917c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/page/contact_us.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/page/contact_us.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/_user_menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_user_menu.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,6 +209,8 @@
       <workItem from="1730411098014" duration="2575000" />
       <workItem from="1730477447594" duration="2340000" />
       <workItem from="1732386965325" duration="242000" />
+      <workItem from="1733694975276" duration="604000" />
+      <workItem from="1733781818868" duration="15000" />
     </task>
     <servers />
   </component>

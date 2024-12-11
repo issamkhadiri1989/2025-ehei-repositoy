@@ -1,0 +1,51 @@
+{% extends 'layout.html.twig' %}
+{#{% form_theme form _self %}#}
+{% form_theme form 'form/blog/add_edit_blog.html.twig' %}
+{% block title %}Hello BlogController!{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {{ form_start(form) }}
+            {{ form_row(form) }}
+            <button class="btn btn-primary mt-4">Ajouter le blog</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{#
+{% block _blog_title_row %}
+    <div class="row mt-2">
+        {{ form_label(form, 'Title', {label_attr: {class: 'form-label'}}) }}
+        <div class="">
+            {{ form_widget(form, {attr: {class: 'form-control'}}) }}
+            {{ form_help(form) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock _blog_title_row %}
+
+{% block _blog_title_help %}
+<small class="form-text text-muted">
+    {{ help }}
+</small>
+{% endblock _blog_title_help %}
+
+{% block _blog_content_row %}
+<div class="row mt-2">
+    {{ form_label(form, 'Content', {label_attr: {class: 'form-label'}}) }}
+    <div class="">
+        {{ form_widget(form, {attr: {class: 'form-control'}}) }}
+        {{ form_help(form) }}
+        {{ form_errors(form) }}
+    </div>
+</div>
+{% endblock _blog_content_row %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .text-muted {
+            font-size: 70%;
+        }
+    </style>
+{% endblock stylesheets %}#}
