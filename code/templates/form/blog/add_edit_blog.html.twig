@@ -1,0 +1,27 @@
+{% block _blog_title_row %}
+    <div class="row mt-2">
+        {{ form_label(form, 'Title', {label_attr: {class: 'form-label'}}) }}
+        <div class="">
+            {{ form_widget(form, {attr: {class: 'form-control'}}) }}
+            {{ form_help(form) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock _blog_title_row %}
+
+{% block _blog_title_help %}
+    <small class="form-text text-muted">
+        {{ help }}
+    </small>
+{% endblock _blog_title_help %}
+
+{% block _blog_content_row %}
+    <div class="row mt-2">
+        {{ form_label(form, 'Content', {label_attr: {class: 'form-label'}}) }}
+        <div class="">
+            {{ form_widget(form, {attr: {class: 'form-control'}}) }}
+            {{ form_help(form) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock _blog_content_row %}

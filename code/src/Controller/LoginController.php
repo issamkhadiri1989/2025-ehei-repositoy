@@ -22,7 +22,10 @@ class LoginController extends AbstractController
             return $this->redirectToRoute('app_default');
         }
 
-        $builder = $this->createFormBuilder()
+        $builder = $this->createFormBuilder(options: [
+            'block_name' => 'security_form',
+            'label' => 'Connexion',
+        ])
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
         ;
