@@ -22,10 +22,10 @@ class BlogType extends AbstractType
                 'placeholder' => 'Ipsum lorem dolore...',
             ],
             'help' => 'This title will be displayed in the home page. So it needs to be as clear as possible.',
-            'constraints' => [
-                new Assert\NotBlank(message: 'Ce champ ne peut pas être vide.'),
-                new Assert\NotNull(message: 'Ce champ est obligatoire.')
-            ],
+//            'constraints' => [
+//                new Assert\NotBlank(message: 'Ce champ ne peut pas être vide.'),
+//                new Assert\NotNull(message: 'Ce champ est obligatoire.')
+//            ],
         ])
             ->add('content', TextareaType::class, [
                 'label' => "Blog content",
@@ -34,10 +34,10 @@ class BlogType extends AbstractType
                     'placeholder' => 'You can set any content here...',
                 ],
                 'help' => 'Le contenu du blog ne doit pas dépasser 200 caractères',
-                'constraints' => [
-                    new Assert\Length(max: 200, maxMessage: 'Ce contenu dépasse {{ limit }} caractères autorisés'),
-                    new Assert\NotNull(message: 'Le contenu du blog est obligatoire'),
-                ],
+//                'constraints' => [
+//                    new Assert\Length(max: 200, maxMessage: 'Ce contenu dépasse {{ limit }} caractères autorisés'),
+//                    new Assert\NotNull(message: 'Le contenu du blog est obligatoire'),
+//                ],
             ]);
     }
 
