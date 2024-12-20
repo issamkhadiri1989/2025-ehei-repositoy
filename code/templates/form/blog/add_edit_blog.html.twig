@@ -10,10 +10,12 @@
 {% endblock _blog_title_row %}
 
 {% block _blog_title_help %}
-    <small class="form-text text-muted">
-        {{ help }}
-    </small>
+    {{ block('show_help_text') }}
 {% endblock _blog_title_help %}
+
+{% block _blog_content_help %}
+    {{ block('show_help_text') }}
+{% endblock _blog_content_help %}
 
 {% block _blog_content_row %}
     <div class="row mt-2">
@@ -25,3 +27,20 @@
         </div>
     </div>
 {% endblock _blog_content_row %}
+
+{% block form_errors %}
+    {% if errors | length > 0 %}
+        <div>
+            {% for error in errors %}
+                <p class="text-danger">{{ error.message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock form_errors %}
+
+{# create a reusable block to avoid DRY violation #}
+{% block show_help_text %}
+<small class="form-text text-muted">
+    {{ help }}
+</small>
+{% endblock %}
