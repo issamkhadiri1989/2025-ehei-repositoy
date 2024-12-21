@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+    <div class="container">
+        {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+        {{ form_row(form) }}
+        <button class="btn btn-primary">Edit Profile</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

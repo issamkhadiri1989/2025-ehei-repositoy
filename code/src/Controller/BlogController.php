@@ -23,7 +23,13 @@ class BlogController extends AbstractController
         // ... on peut ici  appeler les modificateurs (setters) pour ajouter des données par défaut
         // ces données seront affichées dans le formulaire simulant une modification
 
-        $form = $this->createForm(BlogType::class, $blog);
+        $form = $this->createForm(
+            BlogType::class,
+            $blog,
+            options: [
+                'attr' => ['novalidate' => 'novalidate'],
+//                'validation_groups' => ['Strict'],
+            ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
