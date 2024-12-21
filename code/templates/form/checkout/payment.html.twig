@@ -1,0 +1,75 @@
+
+{% block _credit_card_payment_row %}
+    <div class="form-container">
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(form.fullName) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(form.cardNumber) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(form.expiresOn) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(form.cvv) }}
+            </div>
+        </div>
+    </div>
+{% endblock _credit_card_payment_row %}
+
+{% block _credit_card_payment_fullName_row %}
+    <div class="field-container">
+        {{ form_label(form, '', {label_attr: {class: 'form-label'}}) }}
+        {{ form_widget(form, {
+            attr: {
+                maxlength: 20,
+                class: 'form-control'
+            }
+        }) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock _credit_card_payment_fullName_row %}
+
+{% block _credit_card_payment_cardNumber_row %}
+    <div class="field-container">
+        {{ form_label(form, '', {label_attr: {class: 'form-label'}}) }}
+        {{ form_widget(form, {
+            attr: {
+                class: 'form-control'
+            }
+        }) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock _credit_card_payment_cardNumber_row %}
+
+{% block _credit_card_payment_cvv_row %}
+    <div class="field-container">
+        {{ form_label(form, '', {label_attr: {class: 'form-label'}}) }}
+        {{ form_widget(form, {
+            attr: {
+                pattern: "[0-9]*",
+                inputmode: "numeric",
+                class: 'form-control'
+            }
+        }) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock _credit_card_payment_cvv_row %}
+
+{% block _credit_card_payment_expiresOn_row %}
+    <div class="field-container">
+        {{ form_label(form, '', {label_attr: {class: 'form-label'}}) }}
+        {{ form_widget(form, {
+            attr: {
+                maxlength: 20,
+                class: 'form-control'
+            }
+        }) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock _credit_card_payment_expiresOn_row %}
