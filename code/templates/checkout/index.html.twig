@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+{% form_theme checkout_form 'form/checkout/payment.html.twig' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-8"></div>
+            <div class="col-4">
+                <div class="payment-title">
+                    <h1>Payment Information</h1>
+                </div>
+                {{ form_start(checkout_form) }}
+                {{ form_row(checkout_form) }}
+               <div class="mt-5">
+                   <button class="btn btn-primary">Checkout</button>
+               </div>
+                {{ form_end(checkout_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_css %}
+    <style>
+        label {
+            padding-bottom: 5px;
+            font-size: 13px;
+        }
+
+        input.form-control, select.form-control {
+            padding: 15px;
+            width: 100%;
+            border: 1px solid #dcdcdc;
+        }
+    </style>
+{% endblock custom_css %}
+
+{% block custom_javascripts %}
+    <script src="{{ asset('javascripts/jquery.inputmask.js') }}"></script>
+    <script>
+        $(function () {
+            $('#credit_card_payment_cardNumber').inputmask("9999 9999 9999 9999");
+            $('#credit_card_payment_cvv').inputmask("999");
+        } ())
+    </script>
+{% endblock custom_javascripts %}
