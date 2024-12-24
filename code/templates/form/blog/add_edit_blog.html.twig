@@ -1,27 +1,27 @@
 {% block _blog_title_row %}
-    <div class="row mt-2">
+    {{ form_errors(form) }}
+    <div class="form-floating">
+        {{ form_widget(form, {attr: {class: 'form-control'}}) }}
         {{ form_label(form, 'Title', {label_attr: {class: 'form-label'}}) }}
-        <div class="">
-            {{ form_widget(form, {attr: {class: 'form-control'}}) }}
-            {{ form_help(form) }}
-            {{ form_errors(form) }}
-        </div>
     </div>
+    {{ form_help(form) }}
 {% endblock _blog_title_row %}
 
 {% block _blog_title_help %}
     <small class="form-text text-muted">
-        {{ help }}
+        <i class="fa-regular fa-circle-question"></i> {{ help }}
     </small>
 {% endblock _blog_title_help %}
 
 {% block _blog_content_row %}
-    <div class="row mt-2">
+    <div class="mt-4">
+        {{ form_errors(form) }}
         {{ form_label(form, 'Content', {label_attr: {class: 'form-label'}}) }}
-        <div class="">
-            {{ form_widget(form, {attr: {class: 'form-control'}}) }}
-            {{ form_help(form) }}
-            {{ form_errors(form) }}
-        </div>
+        {{ form_widget(form, {attr: {class: 'form-control', autocomplete: 'off', rows: 10}}) }}
+        {{ form_help(form) }}
     </div>
 {% endblock _blog_content_row %}
+
+{% block _blog_title_label %}
+    <label {% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}>{{ label }}</label>
+{% endblock _blog_title_label %}
