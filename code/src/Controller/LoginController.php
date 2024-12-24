@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\Type\ChangePasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +28,7 @@ class LoginController extends AbstractController
             'label' => 'Connexion',
         ])
             ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
+            ->add('password', ChangePasswordType::class)
         ;
 
         $form = $builder->getForm();

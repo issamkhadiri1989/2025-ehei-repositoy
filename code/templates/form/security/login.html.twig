@@ -11,9 +11,10 @@
 {% block _security_form_password_row %}
     <div class="mt-4">
         <div class="form-floating">
-            {{ form_widget(form, {attr: {class: 'form-control', placeholder: 'Password', autocomplete: 'off'}}) }}
-            {{ form_label(form, 'Password', {label_attr: {class: 'form-label'}}) }}
+            {{ form_widget(form.password, {attr: {class: 'form-control', placeholder: 'Password', autocomplete: 'off'}}) }}
+            {{ form_label(form.password, 'Password', {label_attr: {class: 'form-label'}}) }}
         </div>
+        {{ form_errors(form.password) }}
     </div>
 {% endblock %}
 
