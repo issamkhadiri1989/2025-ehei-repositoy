@@ -30,3 +30,6 @@ enter:
 
 restart-nginx:
 	docker compose exec nginx nginx -s reload
+
+load-fixtures:
+	docker compose exec symfony php bin/console doctrine:fixtures:load

@@ -22,6 +22,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+        dql:
+            datetime_functions:
+                date: DoctrineExtensions\Query\Mysql\Date
+            numeric_functions:
+                json_contains: DoctrineExtensions\Query\Mysql\JsonContains
 
 when@test:
     doctrine:
