@@ -1,7 +1,9 @@
+{% use 'form/common/errors.html.twig' %}
 {% block _security_form_email_row %}
+    {% set classes = 'form-control' ~ ((errors | length > 0) ? ' is-invalid' : '') %}
     <div class="mt-4">
         <div class="form-floating mb-3">
-            {{ form_widget(form, {attr: {class: 'form-control', placeholder: 'name@example.com'}}) }}
+            {{ form_widget(form, {attr: {class: classes, placeholder: 'name@example.com'}}) }}
             {{ form_label(form, 'Email address', {label_attr: {class: 'form-label'}}) }}
         </div>
         {{ form_errors(form) }}
@@ -9,14 +11,23 @@
 {% endblock %}
 
 {% block _security_form_password_row %}
+    {% set classes = 'form-control' ~ ((errors | length > 0) ? ' is-invalid' : '' ) %}
     <div class="mt-4">
         <div class="form-floating">
-            {{ form_widget(form, {attr: {class: 'form-control', placeholder: 'Password', autocomplete: 'off'}}) }}
+            {{ form_widget(form, {attr: {class: classes, placeholder: 'Password', autocomplete: 'off'}}) }}
             {{ form_label(form, 'Password', {label_attr: {class: 'form-label'}}) }}
         </div>
+        {{ form_errors(form) }}
     </div>
 {% endblock %}
 
 {% block _security_form_label %}
     <h3>{{ label }}</h3>
 {% endblock %}
+
+{% block form_label %}
+    {% if (errors | length > 0) %}
+        {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' text-danger')|trim}) -%}
+    {% endif %}
+    <label {% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}>{{ label }}</label>
+{% endblock form_label %}

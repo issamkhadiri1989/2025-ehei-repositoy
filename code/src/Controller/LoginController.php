@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Validator\Constraint\PasswordConstraint;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class LoginController extends AbstractController
 {
@@ -25,9 +29,23 @@ class LoginController extends AbstractController
         $builder = $this->createFormBuilder(options: [
             'block_name' => 'security_form',
             'label' => 'Connexion',
+            'attr' => [
+                'novalidate' => 'novalidate',
+            ],
         ])
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
+            ->add('email', EmailType::class, [
+                'constraints' => [
+                    new Email(),
+                    new NotBlank(),
+                ],
+            ])
+            ->add('password', PasswordType::class, [
+                'constraints' => [
+                    new PasswordConstraint(),
+                    new NotBlank(),
+                    new NotNull(),
+                ],
+            ])
         ;
 
         $form = $builder->getForm();
