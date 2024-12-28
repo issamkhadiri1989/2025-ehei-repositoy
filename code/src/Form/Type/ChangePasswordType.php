@@ -8,6 +8,8 @@ use App\Validator\Constraint\PasswordConstraint;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class ChangePasswordType extends AbstractType
 {
@@ -17,6 +19,8 @@ class ChangePasswordType extends AbstractType
             ->add('password', PasswordType::class, [
                 'constraints' => [
                     new PasswordConstraint(),
+                    new NotNull(),
+                    new NotBlank(),
                 ],
             ])
             // ...

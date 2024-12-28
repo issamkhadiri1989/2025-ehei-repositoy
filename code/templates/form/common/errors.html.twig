@@ -1,0 +1,12 @@
+{% block form_errors %}
+    {% if errors | length > 0 %}
+        <ul class="list-unstyled small">
+            {% for error in errors %}
+                <li>
+                    <span class="badge rounded-pill bg-danger">error</span>
+                    <span class="text-danger">{{ error.message }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock form_errors %}

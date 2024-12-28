@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class BlogType extends AbstractType
 {
@@ -21,6 +22,10 @@ class BlogType extends AbstractType
                 'placeholder' => 'Ipsum lorem dolore...',
             ],
             'help' => 'This title will be displayed in the home page. So it needs to be as clear as possible.',
+            'constraints' => [
+                new Assert\NotBlank(),
+                new Assert\NotNull(),
+            ],
         ])
             ->add('content', TextareaType::class, [
                 'label' => "Blog content",
@@ -28,11 +33,19 @@ class BlogType extends AbstractType
                     'rows' => 10,
                     'placeholder' => 'You can set any content here...',
                 ],
+                'constraints' => [
+                    new Assert\NotNull(),
+                    new Assert\NotBlank(),
+                    new Assert\Length(max: 200),
+                ],
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefault('data_class', Blog::class);
+        $resolver->setDefaults([
+            'data_class' => Blog::class,
+            'label' => false,
+        ]);
     }
 }
