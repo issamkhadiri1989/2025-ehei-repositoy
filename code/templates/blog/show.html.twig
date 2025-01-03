@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>{{ blog.title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">{{ blog.title }}</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            {{ blog.content | raw}}
+        </div>
+        <div class="col-4">
+            <p class="text-muted">
+                <i class="fa-solid fa-calendar"></i> {{ blog.createdAt | date('c') }}
+            </p>
+            <p>
+                <i class="fa-regular fa-user"></i> {{ blog.author.fullName }}
+            </p>
+            <div class="list-group">
+                {% for category in blog.categories %}
+                    <a href="{{ url('app_category_view_by_id', {id: category.id}) }}" class="list-group-item list-group-item-action">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+            {% for tag in blog.tags %}
+                <a href="{{ url('app_blogs_all', {tag: tag}) }}" class="badge rounded-pill bg-primary link-underline">
+                    <i class="fa-solid fa-tag"></i> {{ tag }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

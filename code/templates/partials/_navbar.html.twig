@@ -4,6 +4,7 @@
             <span class="visually-hidden">(current)</span>
         </a>
     </li>
+    {{ render(controller('App\\Controller\\CategoryController::allCategories')) }}
     <li class="nav-item">
         <a class="nav-link" href="{{ url('about_the_company') }}">A propos de nous</a>
     </li>

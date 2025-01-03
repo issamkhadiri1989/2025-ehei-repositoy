@@ -1,0 +1,12 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle"
+       data-bs-toggle="dropdown"
+       href="#" role="button"
+       aria-haspopup="true"
+       aria-expanded="false">Browse Categories</a>
+    <div class="dropdown-menu">
+        {% for category in categories %}
+            <a class="dropdown-item" href="{{ url('app_category_view_by_id', {id: category.id}) }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+</li>

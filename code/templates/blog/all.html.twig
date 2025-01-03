@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+        </ol>
+
+        <div class="row">
+            {% for blog in blogs %}
+                <div class="col-3 m-1">
+                    <div class="card " style="height: 200px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ blog.title }}</h5>
+                            {% for tag in blog.tags %}
+                                <a href="{{ url('app_blogs_all', {tag: tag}) }}"
+                                   class="badge rounded-pill bg-primary link-underline">
+                                    #{{ tag }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ url('app_blog_view', {
+                                id: blog.id
+                            }) }}" class="card-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock content %}
