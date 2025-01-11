@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Form\Type;
 
-use App\DTO\Blog;
+use App\Entity\Blog;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -28,7 +30,13 @@ class BlogType extends AbstractType
                     'rows' => 10,
                     'placeholder' => 'You can set any content here...',
                 ],
-            ]);
+            ])
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'choice_name' => 'id',
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

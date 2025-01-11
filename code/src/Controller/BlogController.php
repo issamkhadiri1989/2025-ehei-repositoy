@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\DTO\Blog;
+use App\Entity\Blog;
 use App\Form\Type\BlogType;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +20,7 @@ class BlogController extends AbstractController
     public function index(Request $request): array
     {
         $blog = new Blog();
-        // ... on peut ici  appeler les modificateurs (setters) pour ajouter des données par défaut
+        // ... on peut ici appeler les modificateurs (setters) pour ajouter des données par défaut
         // ces données seront affichées dans le formulaire simulant une modification
 
         $form = $this->createForm(BlogType::class, $blog);
