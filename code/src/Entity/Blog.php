@@ -6,8 +6,10 @@ use App\Repository\BlogRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation\Slug;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BlogRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Blog
 {
     #[ORM\Id]
@@ -16,9 +18,11 @@ class Blog
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull,Assert\Length(max: 100)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotNull, Assert\Length(max: 2000)]
     private ?string $content = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -39,6 +43,7 @@ class Blog
 
     #[ORM\ManyToOne(inversedBy: 'blogs')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull, Assert\NotBlank]
     private ?Category $category = null;
 
     public function getId(): ?int
@@ -51,7 +56,7 @@ class Blog
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
 
@@ -63,7 +68,7 @@ class Blog
         return $this->content;
     }
 
-    public function setContent(string $content): static
+    public function setContent(?string $content): static
     {
         $this->content = $content;
 
@@ -140,5 +145,18 @@ class Blog
         $this->category = $category;
 
         return $this;
+    }
+
+    #[ORM\PreUpdate]
+    public function setUpdateDate(): void
+    {
+        $this->setUpdatedAt(new \DateTimeImmutable());
+    }
+
+    #[ORM\PrePersist]
+    public function setCreationDate(): void
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+        $this->setPublished(false);
     }
 }

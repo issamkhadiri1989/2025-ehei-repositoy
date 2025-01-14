@@ -16,28 +16,33 @@ class BlogRepository extends ServiceEntityRepository
         parent::__construct($registry, Blog::class);
     }
 
-    //    /**
-    //     * @return Blog[] Returns an array of Blog objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('b')
-    //            ->andWhere('b.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('b.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function addNewBlog(Blog $instance): void
+    {
+        $this->doSave($instance, true);
+    }
 
-    //    public function findOneBySomeField($value): ?Blog
-    //    {
-    //        return $this->createQueryBuilder('b')
-    //            ->andWhere('b.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function editBlog(Blog $instance): void
+    {
+        $this->doSave($instance, false);
+    }
+
+    public function removeBlog(Blog $blog): void
+    {
+        $manager = $this->getEntityManager();
+
+        $manager->remove($blog);
+
+        $this->doSave($blog, false);
+    }
+
+    private function doSave(Blog $blog, bool $mustPersist)
+    {
+        $manager = $this->getEntityManager();
+
+        if (true === $mustPersist) {
+            $manager->persist($blog);
+        }
+
+        $manager->flush();
+    }
 }
