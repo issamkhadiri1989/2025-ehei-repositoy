@@ -25,3 +25,12 @@
 {% block _blog_title_label %}
     <label {% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}>{{ label }}</label>
 {% endblock _blog_title_label %}
+
+{% block _blog_category_row %}
+    <div class="mt-4">
+        {{ form_errors(form) }}
+        {{ form_label(form, 'Content', {label_attr: {class: 'form-label'}}) }}
+        {{ form_widget(form, {attr: {class: 'form-control', autocomplete: 'off', rows: 10}}) }}
+        {{ form_help(form) }}
+    </div>
+{% endblock _blog_category_row %}

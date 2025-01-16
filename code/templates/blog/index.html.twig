@@ -8,7 +8,10 @@
             {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
             {{ form_errors(form) }}
             {{ form_row(form) }}
-            <button class="btn btn-primary mt-4">Ajouter le blog</button>
+            <button class="btn btn-primary mt-4">
+                {% set label = edition is defined and edition == true ? 'Modifier le blog' : 'Ajouter le blog' %}
+                {{ label }}
+            </button>
             {{ form_end(form) }}
         </div>
     </div>
