@@ -7,14 +7,15 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Domain\Blog\Handler\BlogHandlerInterface;
-use App\Domain\Blog\Handler\HttpBlogHandler;
 use App\Entity\Blog;
+use App\File\Processor\FileProcessorInterface;
 use App\Form\Type\BlogType;
+use App\Form\Type\UploadBlogType;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class BlogController extends AbstractController
@@ -66,5 +67,22 @@ class BlogController extends AbstractController
             'form' => $form,
             'edition' => true,
         ];
+    }
+
+    #[Route('/blog/upload', name: 'app_blog_upload', priority: 1)]
+    public function uploadBlog(Request $request, FileProcessorInterface $processor): Response
+    {
+        $form = $this->createForm(UploadBlogType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $processor->process($data['file'], $data['category']);
+            dd($data);
+        }
+
+        return $this->render('blog/upload_blog.html.twig', [
+            'form' => $form,
+        ]);
     }
 }
