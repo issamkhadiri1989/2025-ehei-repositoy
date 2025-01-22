@@ -22,3 +22,15 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Notification\Strategy\EmailNotificationStrategy:
+        tags:
+            - { name: 'app.chain_handler', priority: 100 }
+
+    App\Notification\Strategy\SmsNotificationStrategy:
+        tags:
+            - { name: 'app.chain_handler', priority: 50 }
+
+    App\Notification\Strategy\WhatsAppNotificationStrategy:
+        tags:
+            - { name: 'app.chain_handler', priority: 20 }
