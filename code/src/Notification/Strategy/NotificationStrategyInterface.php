@@ -11,6 +11,4 @@ interface NotificationStrategyInterface
     public function setNext(NotificationStrategyInterface $strategy): void;
 
     public function handle(Request $request): void;
-
-    public function supports(Request $request): bool;
 }

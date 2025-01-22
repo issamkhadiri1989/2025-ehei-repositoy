@@ -6,7 +6,7 @@ namespace App\Notification\Strategy;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class WhatsAppNotificationStrategy extends AbstractNotificationStrategy
+class WhatsAppNotificationStrategy extends AbstractSupportableNotificationStrategy
 {
     public function handle(Request $request): void
     {

@@ -6,7 +6,7 @@ namespace App\Notification\Strategy;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class EmailNotificationStrategy extends AbstractNotificationStrategy
+class EmailNotificationStrategy extends AbstractSupportableNotificationStrategy
 {
     public function handle(Request $request): void
     {
