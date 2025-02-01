@@ -34,6 +34,7 @@
         "symfony/runtime": "7.0.*",
         "symfony/security-bundle": "7.0.*",
         "symfony/serializer": "7.0.*",
+        "symfony/slack-notifier": "7.0.*",
         "symfony/stimulus-bundle": "^2.21",
         "symfony/string": "7.0.*",
         "symfony/translation": "7.0.*",

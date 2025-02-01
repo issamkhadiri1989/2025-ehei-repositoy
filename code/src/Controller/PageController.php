@@ -12,6 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Notifier\ChatterInterface;
+use Symfony\Component\Notifier\Exception\TransportExceptionInterface;
+use Symfony\Component\Notifier\Message\ChatMessage;
 use Symfony\Component\Routing\Attribute\Route;
 
 class PageController extends AbstractController
@@ -98,5 +101,22 @@ class PageController extends AbstractController
             file: 'terms/Terms_And_Conditions2024.pdf',
             contentDisposition: ResponseHeaderBag::DISPOSITION_ATTACHMENT, (OR ResponseHeaderBag::DISPOSITION_INLINE)
         );*/
+    }
+
+    #[Route(path: "/slack")]
+    public function notify(ChatterInterface $chatter): Response
+    {
+        $message = (new ChatMessage('You got a new invoice for 15 EUR.'))
+            // if not set explicitly, the message is sent to the
+            // default transport (the first one configured)
+            ->transport('slack');
+
+        try {
+            $sentMessage = $chatter->send($message);
+        } catch (TransportExceptionInterface $e) {
+            dd($e->getMessage());
+        }
+
+        return $this->render('page/index.html.twig');
     }
 }
