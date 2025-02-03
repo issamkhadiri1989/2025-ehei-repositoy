@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Notification\ChainInitializer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -98,5 +99,13 @@ class PageController extends AbstractController
             file: 'terms/Terms_And_Conditions2024.pdf',
             contentDisposition: ResponseHeaderBag::DISPOSITION_ATTACHMENT, (OR ResponseHeaderBag::DISPOSITION_INLINE)
         );*/
+    }
+
+    #[Route(name: "app.chain_of_responsibility", path: "/chain")]
+    public function chain(ChainInitializer  $chainInitializer, Request $request): Response
+    {
+        $chainInitializer->notify($request);
+
+        return $this->render('page/notify.html.twig');
     }
 }
