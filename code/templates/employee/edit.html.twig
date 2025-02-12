@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% form_theme employee_form 'bootstrap_5_layout.html.twig' %}
+{% block content %}
+    <div class="container">
+        {{ form_start(employee_form) }}
+        {{ form_row(employee_form) }}
+        <button>Edit new Employee</button>
+        {{ form_end(employee_form) }}
+    </div>
+{% endblock content %}

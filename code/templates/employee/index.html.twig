@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="container">
+        <h1>Liste des employés</h1>
+        <form action="" method="get">
+            <input type="text" name="employee" value="{{ query }}"/>
+            <button>Search</button>
+        </form>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Adresse email</th>
+                <th scope="col">CIN</th>
+                <th scope="col">Voir</th>
+                <th scope="col">Editer</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in employees %}
+                <tr>
+                    <th scope="row">{{  item.id }}</th>
+                    <td>{{ item.fullName }}</td>
+                    <td>{{ item.emailAddress }}</td>
+                    <td>{{ item.identityCode }}</td>
+                    <td>
+                        <a href="{{ url('app_view_employee', {id: item.id}) }}" class="badge rounded-pill bg-info" >
+                            <i class="fa-regular fa-eye"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('app_edit_employee', {employeeIdentifier: item.id}) }}" class="badge rounded-pill bg-success" >
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('app_remove_employee', {id: item.id}) }}" class="badge rounded-pill bg-danger" >
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

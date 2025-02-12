@@ -1,0 +1,16 @@
+<div class="card mt-2 mb-2" >
+    <div class="card-body">
+        <label class="card-title">{{ blog.title }}</label>
+    </div>
+    <div class="card-body">
+        {% for tag in blog.tags %}
+            <a href="{{ url('app_blogs_all', {tag: tag}) }}"
+               class="badge rounded-pill bg-primary link-underline">
+                <i class="fa-solid fa-tag"></i> {{ tag }}
+            </a>
+        {% endfor %}
+    </div>
+    <div class="card-footer">
+        <a href="{{ url('app_blog_update', {blogId: blog.id}) }}" class="card-link">View</a>
+    </div>
+</div>

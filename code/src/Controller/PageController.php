@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Blog;
+use App\Entity\User;
+use App\Repository\BlogRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -16,8 +20,16 @@ use Symfony\Component\Routing\Attribute\Route;
 class PageController extends AbstractController
 {
     #[Route('/page', name: 'app_page')]
-    public function index(): Response
+    public function index(EntityManagerInterface $manager): Response
     {
+        /** @var BlogRepository $repository */
+        $repository = $manager->getRepository(Blog::class);
+        /** @var Blog[] $blogs */
+        $blogs = $repository->getPublishedBlogs();
+        /*$blogs = $repository->getBlogsPublishedOnly(new \DateTime('2024-12-28'), new \DateTime('2024-12-31'), $user);*/
+
+        dump($blogs);
+
         return $this->render('page/index.html.twig', [
             'controller_name' => 'PageController',
         ]);

@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="container">
+        <h1>Profile</h1>
+        <p>Nom complet : {{ employee.fullName }}</p>
+        <p>@ Adresse Email : {{ employee.emailAddress }}</p>
+        <p>CIN : {{ employee.identityCode }}</p>
+        <a href="{{ url('app_edit_employee', {employeeIdentifier: employee.id }) }}">Editer les informations</a>
+    </div>
+{% endblock content %}

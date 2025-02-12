@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -12,12 +15,12 @@ use Symfony\Component\Routing\Requirement\Requirement;
 class CategoryController extends AbstractController
 {
     #[Route('/category/{id}', name: 'app_category_view_by_id', requirements: ['id' => Requirement::POSITIVE_INT])]
-    public function showCategoryBydId($id): Response
+    public function showCategoryBydId(Category $category): Response
     {
         // ...
 
         return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
+            'category' => $category,
         ]);
     }
 
@@ -32,12 +35,16 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/category/all', name: 'app_category_view_by_all', priority: 1)]
-    public function allCategories(): Response
+    public function allCategories(EntityManagerInterface $manager): Response
     {
-        // ...
+        /** @var CategoryRepository $categories */
+        $repository = $manager->getRepository(Category::class);
 
-        return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
+        /** @var Category[] $categories */
+        $categories = $repository->findAll();
+
+        return $this->render('category/all.html.twig', [
+            'categories' => $categories,
         ]);
     }
 
