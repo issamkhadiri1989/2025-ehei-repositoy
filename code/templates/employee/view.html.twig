@@ -5,6 +5,7 @@
         <p>Nom complet : {{ employee.fullName }}</p>
         <p>@ Adresse Email : {{ employee.emailAddress }}</p>
         <p>CIN : {{ employee.identityCode }}</p>
+        <p>Department : {{ employee.department.name }}</p>
         <a href="{{ url('app_edit_employee', {employeeIdentifier: employee.id }) }}">Editer les informations</a>
     </div>
 {% endblock content %}
