@@ -6,13 +6,18 @@ namespace App\Controller;
 
 use App\Entity\Employee;
 use App\Form\Type\EmployeeType;
+use App\Mailer\Mailer;
+use App\Password\PasswordResetHandler;
 use App\Repository\EmployeeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 
@@ -93,5 +98,15 @@ final class EmployeeController extends AbstractController
             'employees' => $employees,
             'query' => $query,
         ]);
+    }
+
+    #[Route('/employee/{id}/send-password', name: 'app_employee_send_password')]
+    public function sendPasswordForEmploy(
+        #[MapEntity] Employee $employee,
+        PasswordResetHandler $handler,
+    ): RedirectResponse {
+        $handler->reset($employee);
+
+        return $this->redirectToRoute('app_employee');
     }
 }

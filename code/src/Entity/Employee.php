@@ -38,6 +38,9 @@ class Employee
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $initialized = null;
+
     public function __construct()
     {
         $this->subscriptions = new ArrayCollection();
@@ -136,5 +139,17 @@ class Employee
     public function setupUpdateDate(): void
     {
         $this->setUpdatedAt(new \DateTimeImmutable());
+    }
+
+    public function isInitialized(): ?bool
+    {
+        return $this->initialized;
+    }
+
+    public function setInitialized(?bool $initialized): static
+    {
+        $this->initialized = $initialized;
+
+        return $this;
     }
 }
