@@ -6,6 +6,15 @@
         <p>@ Adresse Email : {{ employee.emailAddress }}</p>
         <p>CIN : {{ employee.identityCode }}</p>
         <p>Department : {{ employee.department.name }}</p>
-        <a href="{{ url('app_edit_employee', {employeeIdentifier: employee.id }) }}">Editer les informations</a>
+        <p>
+            <a href="{{ url('app_edit_employee', {employeeIdentifier: employee.id }) }}">
+                <i class="fa-solid fa-pen-to-square"></i> Editer les informations
+            </a>
+        </p>
+        <p>
+            <a href="{{ url('app_employee_send_password', {id: employee.id}) }}">
+                <i class="fa-solid fa-key"></i> Envoyer le code pin
+            </a>
+        </p>
     </div>
 {% endblock content %}

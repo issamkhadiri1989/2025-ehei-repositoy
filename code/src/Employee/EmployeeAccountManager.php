@@ -7,15 +7,15 @@ namespace App\Employee;
 use App\Entity\Employee;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class EmployeeManager
+final class EmployeeAccountManager
 {
     public function __construct(private EntityManagerInterface $manager)
     {
     }
 
-    public function markEmployeeAsInitialized(Employee $employee): void
+    public function lockEmployeeAccount(Employee $employee): void
     {
-        $employee->setInitialized(true);
+        $employee->setLocked(true);
         $this->manager->flush();
     }
 }

@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace App\Password;
 
-use App\Employee\EmployeeManager;
+use App\Employee\EmployeeAccountManager;
 use App\Entity\Employee;
 use App\Mailer\Mailer;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Mime\Address;
 
 final class PasswordResetHandler
 {
     public function __construct(
-        private PasswordGenerator $generator,
-        private EmployeeManager $manager,
-        private Mailer $mailer,
+        #[Autowire(service: PinCodeGenerator::class)]
+        private readonly PinGeneratorInterface $generator,
+        private readonly EmployeeAccountManager $manager,
+        private readonly Mailer $mailer,
     ) {
 
     }
@@ -24,14 +26,15 @@ final class PasswordResetHandler
         $password = $this->generator->generate();
 
         $this->mailer->send(
-            new Address($employee->getEmailAddress(), $employee->getFullName()),
-            'email/generate_password.html.twig',
-            [
+            from: new Address('no-reply@ehei.com'),
+            to: new Address($employee->getEmailAddress(), $employee->getFullName()),
+            mailTemplate: 'email/generate_password.html.twig',
+            contentVariables: [
                 'password' => $password,
                 'employee' => $employee,
             ],
         );
 
-        $this->manager->markEmployeeAsInitialized($employee);
+        $this->manager->lockEmployeeAccount($employee);
     }
 }
