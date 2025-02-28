@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Password;
 
-class PasswordGenerator
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
+
+#[AsAlias]
+class PasswordGenerator implements PinGeneratorInterface
 {
     public function generate(int $length = 5): string
     {

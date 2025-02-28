@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250225221800 extends AbstractMigration
+final class Version20250302153146 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20250225221800 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE employee ADD initialized TINYINT(1) DEFAULT NULL');
+        $this->addSql('ALTER TABLE employee ADD locked TINYINT(1) DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE employee DROP initialized');
+        $this->addSql('ALTER TABLE employee DROP locked');
     }
 }

@@ -39,7 +39,7 @@ class Employee
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $initialized = null;
+    private ?bool $locked = null;
 
     public function __construct()
     {
@@ -141,14 +141,14 @@ class Employee
         $this->setUpdatedAt(new \DateTimeImmutable());
     }
 
-    public function isInitialized(): ?bool
+    public function isLocked(): ?bool
     {
-        return $this->initialized;
+        return $this->locked;
     }
 
-    public function setInitialized(?bool $initialized): static
+    public function setLocked(?bool $locked): static
     {
-        $this->initialized = $initialized;
+        $this->locked = $locked;
 
         return $this;
     }

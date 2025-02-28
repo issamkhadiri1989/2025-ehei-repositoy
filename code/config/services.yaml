@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    app.administrator.default_email: '%env(APP_MAILER_ADMINISTRATOR)%'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -22,3 +22,19 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+#    App\Password\PinGeneratorInterface: '@App\Password\PasswordGenerator'
+#    App\Password\PinGeneratorInterface:
+#        alias: App\Password\PasswordGenerator
+
+#    App\Password\PasswordResetHandler:
+#        arguments:
+#            $generator: '@App\Password\PinCodeGenerator'
+
+    App\Password\PasswordResetHandler:
+        arguments:
+            $fromEmailAddress: '%app.administrator.default_email%'
+#            $generator: '@App\Password\PinCodeGenerator'
+#            $emailSenderObject: '%env(json:APP_ADMINISTRATOR_INFO)%'
+#        calls:
+#            - setLogger: ['@logger']
