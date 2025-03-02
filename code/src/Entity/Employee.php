@@ -38,6 +38,9 @@ class Employee
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $locked = null;
+
     public function __construct()
     {
         $this->subscriptions = new ArrayCollection();
@@ -136,5 +139,17 @@ class Employee
     public function setupUpdateDate(): void
     {
         $this->setUpdatedAt(new \DateTimeImmutable());
+    }
+
+    public function isLocked(): ?bool
+    {
+        return $this->locked;
+    }
+
+    public function setLocked(?bool $locked): static
+    {
+        $this->locked = $locked;
+
+        return $this;
     }
 }

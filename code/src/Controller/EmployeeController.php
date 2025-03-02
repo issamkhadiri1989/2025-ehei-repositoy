@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Employee;
 use App\Form\Type\EmployeeType;
+use App\Password\PasswordResetHandler;
 use App\Repository\EmployeeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -93,5 +94,15 @@ final class EmployeeController extends AbstractController
             'employees' => $employees,
             'query' => $query,
         ]);
+    }
+
+    #[Route('/employee/{id}/send-password', name: 'app_employee_send_password')]
+    public function sendPasswordForEmploy(
+        #[MapEntity] Employee $employee,
+        PasswordResetHandler $handler,
+    ): RedirectResponse {
+        $handler->reset($employee);
+
+        return $this->redirectToRoute('app_employee');
     }
 }
