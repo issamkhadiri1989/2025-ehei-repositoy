@@ -28,12 +28,14 @@ final class PasswordResetHandler
 //        #[Autowire(env: 'APP_ENV')]
 //        private readonly string $environment,
 //        private readonly array $emailSenderObject,
+            private string $adminFullName,
     ) {
 
     }
 
     public function reset(Employee $employee): void
     {
+        dump($this->adminFullName);
         $password = $this->generator->generate();
 
         $this->mailer->send(
