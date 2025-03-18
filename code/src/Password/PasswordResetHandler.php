@@ -24,7 +24,7 @@ final class PasswordResetHandler
         private readonly Mailer $mailer,
 //        #[Autowire(param: 'app.administrator.default_email')]
         private readonly string $fromEmailAddress,
-//        private readonly ContainerBagInterface $containerBag,
+        private readonly ContainerBagInterface $containerBag,
 //        #[Autowire(env: 'APP_ENV')]
 //        private readonly string $environment,
 //        private readonly array $emailSenderObject,
