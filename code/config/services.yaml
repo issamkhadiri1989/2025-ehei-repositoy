@@ -43,3 +43,10 @@ services:
             tags: [ 'app.password_generator' ]
             bind:
                 string $adminFullName: 'EHEI SYSADMIN'
+
+#        App\Notification\Handler\NotificationHandlerInterface:
+#            tags: [ 'app.notification_handler' ]
+
+######## >>>  this is equivalent to #[AsAlias] used in App\Notification\Handler\EmailRequestHandler
+#    App\Notification\Handler\NotificationHandlerInterface:
+#        alias: App\Notification\Handler\EmailRequestHandler
