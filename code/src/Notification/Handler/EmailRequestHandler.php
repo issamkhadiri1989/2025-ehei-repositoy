@@ -8,10 +8,12 @@ use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\HttpFoundation\Request;
 
 #[AsAlias]
-class EmailRequestHandler implements NotificationHandlerInterface
+class EmailRequestHandler extends AbstractRequestHandler
 {
     public function handle(Request $request): void
     {
         dump(__METHOD__);
+
+        parent::handle($request);
     }
 }
