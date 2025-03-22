@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Notification\Handler;
 
+use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
 use Symfony\Component\HttpFoundation\Request;
 
+#[AsTaggedItem(priority: 1)]
 class WhatsAppRequestHandler extends AbstractRequestHandler
 {
     public function handle(Request $request): void
@@ -21,7 +23,8 @@ class WhatsAppRequestHandler extends AbstractRequestHandler
     }
 
     function support(Request $request): bool
-    {
+    {        dump(__CLASS__);
+
         return $request->query->has('s') && $request->query->get('s') === 'whatsapp';
     }
 }

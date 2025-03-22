@@ -54,3 +54,13 @@ services:
 #    App\Notification\NotificationManager:
 #        arguments:
 #            $handlers: !tagged_iterator app.request_handler
+
+#    App\Notification\Handler\SMSRequestHandler:
+#        tags:
+#            - { name: 'app.request_handler', priority: 1 }
+#    App\Notification\Handler\EmailRequestHandler:
+#        tags:
+#            - { name: 'app.request_handler', priority: 2 }
+#    App\Notification\Handler\WhatsAppRequestHandler:
+#        tags:
+#            - { name: 'app.request_handler', priority: 3 }

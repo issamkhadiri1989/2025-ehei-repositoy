@@ -17,7 +17,7 @@ final class NotificationManager
         private readonly iterable $handlers,
     ) {
         $handlers = \iterator_to_array($this->handlers);
-
+        dump($handlers);
         /** @var NotificationHandlerInterface $handler */
         $this->initialHandler = $handler = \array_shift($handlers);
 

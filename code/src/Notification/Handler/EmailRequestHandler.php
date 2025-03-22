@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Notification\Handler;
 
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
+use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
 use Symfony\Component\HttpFoundation\Request;
 
 #[AsAlias]
+#[AsTaggedItem(priority: 2)]
 class EmailRequestHandler extends AbstractRequestHandler
 {
     public function handle(Request $request): void
@@ -24,6 +26,7 @@ class EmailRequestHandler extends AbstractRequestHandler
 
     function support(Request $request): bool
     {
+        dump(__CLASS__);
         return $request->query->has('s') && $request->query->get('s') === 'email';
     }
 }
