@@ -10,8 +10,18 @@ class SMSRequestHandler extends AbstractRequestHandler
 {
     public function handle(Request $request): void
     {
-        dump(__METHOD__);
+        if (!$this->support($request)) {
+            parent::handle($request);
 
-        parent::handle($request);
+            return;
+        }
+
+        dump(__METHOD__ . " will handle the request");
+        dump($request->query->all());
+    }
+
+    function support(Request $request): bool
+    {
+        return $request->query->has('s') && $request->query->get('s') === 'sms';
     }
 }

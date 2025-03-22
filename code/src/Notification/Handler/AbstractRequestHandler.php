@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Notification\Handler;
 
-use Symfony\Component\Form\RequestHandlerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 abstract class AbstractRequestHandler implements NotificationHandlerInterface
@@ -15,6 +14,8 @@ abstract class AbstractRequestHandler implements NotificationHandlerInterface
     {
         $this->next = $next;
     }
+
+    abstract function support(Request $request): bool;
 
     public function handle(Request $request): void
     {
